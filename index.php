@@ -9,14 +9,15 @@
     <script src="main.js"></script>
 </head>
 <body>
-    <div> 
+
     <h1> WORD ADVENTURE </h1>
+        <div class="layout"> 
+    
         <div class="stats"> 
             <fieldset>
                 <legend> STATS </legend>
         
-        <?php 
-        // database connection
+        <?php
         try
         {
             $db = new PDO('mysql:host=localhost;dbname=word-adventure;charset=utf8', 'root', '');
@@ -26,7 +27,7 @@
             die('Erreur : '.$e->getMessage());
         }
 
-        $req = $db->query('SELECT name, health, experience, level, strength FROM characters_stats ORDER BY ID DESC LIMIT 0, 10');
+        $req = $db->query('SELECT name, health, experience, level, strength FROM characters_stats');
 
         while ($data = $req->fetch())
         { 
@@ -37,15 +38,34 @@
                 <p> Experience : <?= htmlspecialchars($data['experience']); ?></p> 
                 <p> Level : <?= htmlspecialchars($data['level']); ?></p>
                 <p> STR : <?= htmlspecialchars($data['strength']); ?></p> 
-            </fieldset> 
+             
         <?php 
         } 
         $req->closeCursor(); ?>
+        </fieldset>
         </div>
 
         <div class="UI">
             <p> 
-            <form method="post" action="text_post.php"><input type="text" name="textToDisplay"></form>
+        <?php
+            try
+        {
+            $db = new PDO('mysql:host=localhost;dbname=word-adventure;charset=utf8', 'root', '');
+        }
+        catch(Exception $e)
+        {
+            die('Erreur : '.$e->getMessage());
+        }
+
+        $req = $db->query('SELECT id, text FROM textDisplay ORDER BY ID LIMIT 0, 10');
+
+        while ($data = $req->fetch())
+        { 
+            echo '<p>' . nl2br(htmlspecialchars($data['text'])) . '</p>';
+        }
+        $req->closeCursor(); ?>
+            <br/>
+            <form method="post" action="insert.php"><input type="text" name="message"></form>
             </p>
         </div>
 </body>
