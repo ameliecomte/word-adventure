@@ -57,7 +57,7 @@
             die('Erreur : '.$e->getMessage());
         }
 
-        $req = $db->query('SELECT id, text FROM textDisplay ORDER BY ID LIMIT 0, 10');
+        $req = $db->query('(SELECT id, text FROM textDisplay ORDER BY id DESC LIMIT 10) ORDER BY id');
 
         while ($data = $req->fetch())
         { 

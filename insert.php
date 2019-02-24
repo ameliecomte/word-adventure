@@ -1,6 +1,5 @@
 <?php
-
-
+header('Location: index.php');
 
 try
 {
@@ -15,5 +14,4 @@ $req = $db->prepare('INSERT INTO textDisplay(text) VALUES(?)');
 $req->execute(array($_POST['message']));
 
 
-header('Location: index.php');
-?> 
+
