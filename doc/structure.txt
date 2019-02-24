@@ -13,3 +13,69 @@ web/ The root for the web server. The only files accessible from the Internet ar
   css/
   images/
   js/
+
+
+  -----------
+
+
+  <?php
+
+// require_once('Model/PlayableCharacter.php');
+
+
+function text()
+{
+    // require('view/layout.php');
+}
+
+
+class DB
+{
+    function dbConnect()
+    {
+        $db = new PDO('mysql:host=localhost;dbname=word-adventure;charset=utf8', 'root', '');
+        return $db;
+    }
+
+    function setInstance()
+    {
+
+    }
+    
+    function getInstance()
+    {
+
+    }
+}
+
+
+
+$req = $db->query('SELECT * FROM textDisplay ORDER BY ID DESC LIMIT 0, 10');
+
+while ($data = $req->fetch())
+{
+
+}
+
+$req->closeCursor();
+
+
+// 'INSERT INTO characters_stats(name, health, experience, level, strength, intelligence, personality) VALUES('')'
+
+// $db->prepare('SELECT * FROM ? ')
+// $db->execute(array())
+
+// $db->exec('INSERT INTO ...')
+
+// UPDATE table SET var = 10, some_thing = 32 WHERE id = 51
+// DELETE FROM ... WHERE something='blah'
+
+/*
+on minichat_post.php :
+$req = $db->prepare('INSERT INTO minichat (pseudo, message) VALUES(?, ?)');
+$req->execute(array($_POST['pseudo'], $_POST['message']));
+
+// Redirection du visiteur vers la page du minichat
+header('Location: minichat.php');
+
+*/
