@@ -1,14 +1,8 @@
 <?php
 header('Location: ../index.php');
+require('../model/dbModel.php');
 
-try
-{
-    $db = new PDO('mysql:host=localhost;dbname=word-adventure;charset=utf8', 'root', '');
-}
-catch(Exception $e)
-{
-    die('Erreur : '.$e->getMessage());
-}
+$db = dbConnect();
 
 $req = $db->prepare('INSERT INTO textDisplay(text) VALUES(?)');
 $req->execute(array($_POST['message']));
