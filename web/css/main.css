@@ -1,0 +1,18 @@
+
+
+.layout
+{
+    display: flex;
+    justify-content: space-between;
+}
+
+.stats
+{
+    width: 20%;
+    
+}
+
+.UI
+{
+    width: 70%;
+}
