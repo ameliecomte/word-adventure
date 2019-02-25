@@ -78,4 +78,14 @@ $req->execute(array($_POST['pseudo'], $_POST['message']));
 // Redirection du visiteur vers la page du minichat
 header('Location: minichat.php');
 
+// jointure interne
+SELECT j.nom nom_jeu, p.prenom prenom_proprietaire
+FROM proprietaires p
+INNER JOIN jeux_video j
+ON j.ID_proprietaire = p.ID
+WHERE ... etc.
+
+// jointure externe
+
+
 */
