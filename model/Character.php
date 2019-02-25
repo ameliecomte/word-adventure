@@ -1,6 +1,7 @@
 <?php
 class Character
 {
+    private $_id;
     private $_name;
     private $_health;
     private $_experience;
@@ -66,6 +67,16 @@ class Character
         }
     }
 
+    public function setId($id)
+    {
+        $id = (int) $id;
+
+        if ( $id > 0)
+        {
+            $this->_id = $id;
+        }
+    }
+
     public function setName($name)
     {
         if (is_string($name) && strlen($name) <= 20)
@@ -89,7 +100,7 @@ class Character
             return;
         }
 
-        if ($health > 0 && health <= 100)
+        if ($health > 0 && $health <= 100)
         {
             $this->_health = $health;
         }
@@ -148,6 +159,11 @@ class Character
         {
             $this->_strength = $strength;
         }    
+    }
+
+    public function getId()
+    {
+        return $this->_id;
     }
 
     public function getName()
