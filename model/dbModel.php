@@ -14,6 +14,14 @@ function dbConnect()
     }
 }
 
+function insertText()
+{
+    $db = dbConnect();
+    $insertText = $db->prepare('INSERT INTO textDisplay(text) VALUES(?)');
+    
+    return $insertText;
+}
+
 
 function getMessagesDisplay()
 {
