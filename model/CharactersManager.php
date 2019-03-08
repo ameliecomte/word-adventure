@@ -31,27 +31,35 @@ class CharactersManager
         $this->_db->exec('DELETE FROM characters WHERE id = ' . $character->getId());
     }
 
-    public function exists($id)
+    public function exists($info)
     {
-        if (is_int($id))
+        if (is_int($info))
         {
-            return (bool) $this->_db->query('SELECT COUNT(*) FROM characters WHERE id = ' . $id)->fetchColumn;
+            return (bool) $this->_db->query('SELECT COUNT(*) FROM characters WHERE id = ' . $info)->fetchColumn;
         }
 
         $req = $this->_db->prepare('SELECT COUNT(*) FROM characters WHERE name = :name');
-        $req->execute([':name' => $id]);
+        $req->execute([':name' => $info]);
 
         return (bool) $req->fetchColumn();
     }
 
-    public function get($id)
+    public function get($info)
     {
-        $id = (int) $id;
+        if (is_int($info))
+        {
+            $req = $this->_db->query('SELECT id, name, health, experience, level, strength FROM characters WHERE id =' . $info);
+            $data = $req->fetch(PDO::FETCH_ASSOC);
+    
+            return new Character($data);
+        }
+        else
+        {
+            $req = $this->_db->prepare('SELECT id, name, health, experience, level, strength FROM characters WHERE name = :name');
+            $req->execute([':name' => $info]);
 
-        $req = $this->_db->query('SELECT id, name, health, experience, level, strength FROM characters WHERE id =' . $id);
-        $data = $req->fetch(PDO::FETCH_ASSOC);
-
-        return new Character($data);
+            return new Character($req->fetch(PDO::FETCH_ASSOC));
+        }
     }
 
     public function update(Character $character)
