@@ -15,34 +15,14 @@ class Character
 
     public function hydrate(array $data)
     {
-        if (isset($data['id']))
+        foreach ($data as $key => $value)
         {
-            $this->setId($data['id']);
-        }
+            $method = 'set' . ucfirst($key);
 
-        if (isset($data['name']))
-        {
-            $this->setName($data['name']);
-        }
-
-        if (isset($data['health']))
-        {
-            $this->setHealth($data['health']);
-        }
-
-        if (isset($data['experience']))
-        {
-            $this->setExperience($data['experience']);
-        }
-
-        if (isset($data['level']))
-        {
-            $this->setLevel($data['level']);
-        }
-
-        if (isset($data['strength']))
-        {
-            $this->setStrength($data['strength']);
+            if (method_exists($this, $method))
+            {
+                $this->$method($value);
+            }
         }
     }
 
