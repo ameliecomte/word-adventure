@@ -10,14 +10,9 @@ class CharactersManager
 
     public function add(Character $character)
     {
-        $req = $this->db->prepare('INSERT INTO characters(name, health, experience, level, strength) VALUES(:name, :health, :experience, :level, :strength)');
+        $req = $this->_db->prepare('INSERT INTO characters(name) VALUES(:name)');
 
         $req->bindValue(':name', $character->getName());
-        $req->bindValue(':health', $character->getHealth(), PDO::PARAM_INT);
-        $req->bindValue(':experience', $character->getExperience(), PDO::PARAM_INT);
-        $req->bindValue(':level', $character->getLevel(), PDO::PARAM_INT);
-        $req->bindValue(':strength', $character->getStrength(), PDO::PARAM_INT);
-    
         $req->execute();
 
         $character->hydrate([
@@ -27,11 +22,26 @@ class CharactersManager
             'level' => 1,
             'strength' => 1
         ]);
+
+
     }
 
     public function delete(Character $character)
     {
         $this->_db->exec('DELETE FROM characters WHERE id = ' . $character->getId());
+    }
+
+    public function exists($id)
+    {
+        if (is_int($id))
+        {
+            return (bool) $this->_db->query('SELECT COUNT(*) FROM characters WHERE id = ' . $id)->fetchColumn;
+        }
+
+        $req = $this->_db->prepare('SELECT COUNT(*) FROM characters WHERE name = :name');
+        $req->execute([':name' => $id]);
+
+        return (bool) $req->fetchColumn();
     }
 
     public function get($id)
