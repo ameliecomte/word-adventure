@@ -27,22 +27,22 @@ class Character
 
         if (isset($data['health']))
         {
-            $this->setName($data['health']);
+            $this->setHealth($data['health']);
         }
 
         if (isset($data['experience']))
         {
-            $this->setName($data['experience']);
+            $this->setExperience($data['experience']);
         }
 
         if (isset($data['level']))
         {
-            $this->setName($data['level']);
+            $this->setLevel($data['level']);
         }
 
         if (isset($data['strength']))
         {
-            $this->setName($data['strength']);
+            $this->setStrength($data['strength']);
         }
     }
 
@@ -104,7 +104,9 @@ class Character
 
     public function setName($name)
     {
-        if (is_string($name) && strlen($name) <= 20)
+        $name = (string) $name;
+
+        if (is_string($name) && strlen($name) <= 30)
         {
             $this->_name = $name;
         }
@@ -199,6 +201,11 @@ class Character
     public function getHealth()
     {
         return $this->_health;
+    }
+
+    public function getExperience()
+    {
+        return $this->_experience;
     }
 
     public function getLevel()
