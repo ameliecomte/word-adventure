@@ -8,17 +8,18 @@ class Character
     private $_level;
     private $_strength;
 
-    public function __construct($name, $health, $strength)
+    public function __construct(array $data)
     {
-        $this->setName($name);
-        $this->setHealth($health);
-        $this->setStrength($strength);
-        $this->_experience = 1;
-        $this->_level = 0;
+        $this->hydrate($data);
     }
 
     public function hydrate(array $data)
     {
+        if (isset($data['id']))
+        {
+            $this->setId($data['id']);
+        }
+
         if (isset($data['name']))
         {
             $this->setName($data['name']);
@@ -45,9 +46,33 @@ class Character
         }
     }
 
-    public function hitSomething(Character $something)
+    public function validName()
     {
-        $something->_health -= $this->_strength;
+        return !empty($this->_name);
+    }
+
+    public function hit(Character $something)
+    {
+        $something->_health -= ($this->_strength * 5);
+    }
+
+    public function kill(Character $something)
+    {
+        if ($something->_health <= 0)
+        {
+            delete($something);
+            // return;
+        }
+        
+    }
+
+    public function die()
+    {
+        if ($this->_health <= 0)
+        {
+            // die. other things 'GAME OVER'
+            delete($this);
+        }
     }
 
     public function heal()
@@ -139,7 +164,7 @@ class Character
             return;
         }
 
-        if ($level >= 0)
+        if ($level > 0)
         {
             $this->_level = $level;
         }
@@ -155,7 +180,7 @@ class Character
             return;
         }
 
-        if ($strength >= 0)
+        if ($strength > 0)
         {
             $this->_strength = $strength;
         }    
