@@ -1,17 +1,25 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Word Adventure</title>
+  <head>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="web/css/main.css" />
-    <script src="main.js"></script>
-</head>
-<body>
+    <title>Word Adventure</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  </head>
+  <body>
+  <section class="section">
+    <div class="container">
+      <h1 class="title">
+      -- WORD ADVENTURE -- 
+      </h1>
+      <p class="subtitle">
+        text-based adventure <strong>in browser</strong>
+      </p>
+    </div>
+  </section>
 
-
-<h1> WORD ADVENTURE </h1>
+<div class="container">
 
 <?php
 if (isset($message)) // On a un message à afficher ?
@@ -23,11 +31,11 @@ if (isset($character)) // Si on utilise un personnage (nouveau ou pas).
 {
 ?>
 
-    <p><a href="?deconnection=1">Log Out</a></p>
+    <p><a class="button is-dark" href="?deconnection=1">Log Out</a></p>
 
 
     <div class="layout"> 
-        <div class="stats"> 
+        <div class="box"> 
     <fieldset>
       <legend>STATS</legend>
       <p>
@@ -49,7 +57,7 @@ if (isset($character)) // Si on utilise un personnage (nouveau ou pas).
                 $messages->closeCursor();  
                 ?>
                 <br/>
-                <form method="post" action="view/insert.php"><input type="text" name="message"></form>
+                <form method="post" action="view/insert.php"><input class="input" type="text" name="message"></form>
       </p>
     </div>
     </div>
@@ -58,15 +66,27 @@ if (isset($character)) // Si on utilise un personnage (nouveau ou pas).
 else
 {
 ?>
+  <div class="field">
     <form action="" method="post">
-      <p>
-        Name : <input type="text" name="name" maxlength="30" />
-        <input type="submit" value="create this character" name="create" />
-        <input type="submit" value="use this character" name="use" />
+      <label class="label">Choose a character name</label>
+      <div class="collumns">
+      <div class="column">
+        <input class="input" type="text" name="name" maxlength="30" />
+        </div>
+        <div class="column is-half">
+          <input class="button" type="submit" value="create this character" name="create" />
+        </div>
+        <div class="column is-half">
+          <input class="button" type="submit" value="use this character" name="use" />
+        </div>
+      </div> 
     </form>
+  </div>
 <?php
 }
 ?>
+
+</div>
   </body>
 </html>
 
