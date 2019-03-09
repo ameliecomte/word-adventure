@@ -1,0 +1,6 @@
+Turn based
+
+Characters
+Playable
+NPCs
+Enemies

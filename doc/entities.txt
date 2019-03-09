@@ -1,0 +1,80 @@
+
+
+Animals: Normal - Giant - Titan - Zombie - Cursed/Corrupted - Rabies - 
+Rats - hp 5 strength 1
+Dog - 45 strength 10
+Fish - 6 strength 0
+Birds - 3 strength 2
+Dear - 
+Boar -
+Wolf -
+Bear -
+Fox -
+Spiders -
+
+
+Races:
+Humans
+Tallmen - 3 hearts
+Magic beings
+Demi-Gods
+Gods
+Principles
+Winged race
+Robots
+Ice People
+Fairies - hp 15 strength 1
+Nymphes - 
+Werewolves
+Salamander
+Aliens
+
+Fairies
+Vampires 
+Werewolf
+Ghosts
+Undeads
+
+Unique NPCs:
+Father - hp 250 strength 50 (+20)
+Mother - hp 300 strength 20 (+40)
+Girl (Alutena) - hp 100 strength 15 (+15)
+Librarian (Salunia) - hp 150 strength 15 (+20) 
+Scholar Embern - hp 500 strength 30 (+60)
+Ice Queen (Varda)
+Emperor Friedher IV
+
+General NPCs: Kid, Young, Middle Aged, Elder or Novice, Expert, Advanced, Experienced, Veteran, Grandmaster
+Citizens
+Scholars (Albun, Barom, Rebecca, Margett, Elmir)
+Shopkeepers (Sardon, Gondard, Fulbein, Franss) - hp 200 strength 20 (+10)
+Guards
+Bandits
+
+
+exorcists
+enchanter
+Mage
+illusionist
+master of desguise
+firelord
+paladin
+swordsman
+dragonslayer
+knight
+smith
+magic creator
+warrior
+invocation
+ranger
+philosopher
+clergyman
+
+Personality
+Spokesperson, orator, master of desguise
+
+Mage, spellcaster, enchanter, potionist, illusionist, 
+
+Swordsman, athlete, knight, dragonslayer, 
+
+holy - dark - fallen - awesome - of the sun - shadow - criminal - evil - celestial
