@@ -1,0 +1,10 @@
+CREATE TABLE IF NOT EXISTS `characters` (
+  `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(30) COLLATE utf8_general_ci NOT NULL,
+  `health` tinyint(3) unsigned NOT NULL DEFAULT '100',
+  `experience` tinyint(3) unsigned NOT NULL DEFAULT '0', 
+  `level` tinyint(3) unsigned NOT NULL DEFAULT '1', 
+  `strength` tinyint(3) unsigned NOT NULL DEFAULT '1', 
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
