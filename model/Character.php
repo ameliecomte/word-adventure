@@ -34,6 +34,13 @@ class Character
     public function hit(Character $something)
     {
         $something->_health -= ($this->_strength * 5);
+
+        if ($something->_health <= 0)
+        {
+            echo $this->_name . ' killed ' . $something->_name;
+            delete($something);
+            return;
+        }
     }
 
     public function kill(Character $something)

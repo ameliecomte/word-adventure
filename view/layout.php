@@ -50,6 +50,7 @@ if (isset($character)) // Si on utilise un personnage (nouveau ou pas).
     <div class="column">
       <p> 
         <?php  
+                $messages = getMessagesDisplay();
                 while ($data = $messages->fetch())
                 { 
                     echo '<p>' . nl2br(htmlspecialchars($data['text'])) . '</p>';
