@@ -23,13 +23,12 @@ Principles
 Winged race
 Robots
 Ice People
-Fairies - hp 15 strength 1
 Nymphes - 
 Werewolves
 Salamander
 Aliens
 
-Fairies
+Fairies - hp 15 strength 1
 Vampires 
 Werewolf
 Ghosts

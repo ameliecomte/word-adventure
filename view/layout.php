@@ -31,10 +31,10 @@ if (isset($character)) // Si on utilise un personnage (nouveau ou pas).
 {
 ?>
 
-    <p><a class="button is-dark" href="?deconnection=1">Log Out</a></p>
+    <p><a class="button is-dark" href="?logOut=1">Log Out</a></p>
 
 
-    <div class="layout"> 
+    <div class="columns"> 
         <div class="box"> 
     <fieldset>
       <legend>STATS</legend>
@@ -47,14 +47,13 @@ if (isset($character)) // Si on utilise un personnage (nouveau ou pas).
       </p>
     </fieldset>
     </div>
-    <div class="UI">
+    <div class="column">
       <p> 
         <?php  
                 while ($data = $messages->fetch())
                 { 
                     echo '<p>' . nl2br(htmlspecialchars($data['text'])) . '</p>';
                 }
-                $messages->closeCursor();  
                 ?>
                 <br/>
                 <form method="post" action="view/insert.php"><input class="input" type="text" name="message"></form>
@@ -66,19 +65,15 @@ if (isset($character)) // Si on utilise un personnage (nouveau ou pas).
 else
 {
 ?>
-  <div class="field">
+  <div class>
     <form action="" method="post">
       <label class="label">Choose a character name</label>
       <div class="collumns">
-      <div class="column">
-        <input class="input" type="text" name="name" maxlength="30" />
-        </div>
-        <div class="column is-half">
-          <input class="button" type="submit" value="create this character" name="create" />
-        </div>
-        <div class="column is-half">
-          <input class="button" type="submit" value="use this character" name="use" />
-        </div>
+        <div class="column"> <input class="input" type="text" name="name" maxlength="30" /> </div>
+      </div>
+      <div class="collumns">
+        <div class="column"> <input class="button" type="submit" value="create this character" name="create" /></div>
+        <div class="column"> <input class="button" type="submit" value="use this character" name="use" /> </div>
       </div> 
     </form>
   </div>

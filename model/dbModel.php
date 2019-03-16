@@ -31,11 +31,3 @@ function getMessagesDisplay()
     return $messages;
 }
 
-
-function getStats()
-{
-    $db = dbConnect();
-    $stats = $db->query('SELECT name, health, experience, level, strength FROM characters');
-
-    return $stats;
-}

@@ -40,18 +40,19 @@ class Character
     {
         if ($something->_health <= 0)
         {
+            echo $this->_name . ' killed ' . $something->_name;
             delete($something);
-            // return;
+            return;
         }
-        
     }
 
     public function die()
     {
         if ($this->_health <= 0)
         {
-            // die. other things 'GAME OVER'
+            echo $this->_name . ' is dead.';
             delete($this);
+            return;
         }
     }
 
