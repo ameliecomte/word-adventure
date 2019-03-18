@@ -43,16 +43,6 @@ class Character
         }
     }
 
-    public function kill(Character $something)
-    {
-        if ($something->_health <= 0)
-        {
-            echo $this->_name . ' killed ' . $something->_name;
-            delete($something);
-            return;
-        }
-    }
-
     public function die()
     {
         if ($this->_health <= 0)
