@@ -1,5 +1,8 @@
 <?php
-class CharactersManager
+
+require_once("model/DbManager.php");
+
+class CharactersManager extends DbManager
 {
     private $_db;
 
