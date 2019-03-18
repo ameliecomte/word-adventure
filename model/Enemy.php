@@ -1,5 +1,5 @@
 <?php
-class Enemies
+class Enemy
 {
     private $_id;
     private $_name;
