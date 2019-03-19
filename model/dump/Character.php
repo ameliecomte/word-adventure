@@ -26,11 +26,6 @@ class Character
         }
     }
 
-    public function validName()
-    {
-        return !empty($this->_name);
-    }
-
     public function hit(Character $something)
     {
         $something->_health -= ($this->_strength * 5);

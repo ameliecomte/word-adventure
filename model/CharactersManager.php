@@ -1,85 +1,27 @@
 <?php
 
-require_once("model/DbManager.php");
+require_once('model/DbManager.php');
 
 class CharactersManager extends DbManager
 {
-    private $_db;
-
-    public function __construct($db)
+    public function getCharacters()
     {
-        $this->setDb($db);
+        $db = $this->dbConnect();
+        $characters = $db->query('SELECT id, name, health, level FROM characters ORDER BY id');
+
+        return $characters;
     }
 
-    public function add(Character $character)
+    public function getCharacter($characterId)
     {
-        $req = $this->_db->prepare('INSERT INTO characters(name) VALUES(:name)');
+        $db = $this->dbConnect();
+        $req = $db->prepare('SELECT id, name, health, experience, level, strength DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date FROM characters WHERE id = ?');
+        $req->execute(array($characterId));
+        $character = $req->fetch();
 
-        $req->bindValue(':name', $character->getName());
-        $req->execute();
-
-        $character->hydrate([
-            'id' => $this->_db->lastInsertId(),
-            'health' => 100,
-            'experience' => 0,
-            'level' => 1,
-            'strength' => 1
-        ]);
-
-
+        return $character;
     }
 
-    public function delete(Character $character)
-    {
-        $this->_db->exec('DELETE FROM characters WHERE id = ' . $character->getId());
-    }
-
-    public function exists($info)
-    {
-        if (is_int($info))
-        {
-            return (bool) $this->_db->query('SELECT COUNT(*) FROM characters WHERE id = ' . $info)->fetchColumn;
-        }
-
-        $req = $this->_db->prepare('SELECT COUNT(*) FROM characters WHERE name = :name');
-        $req->execute([':name' => $info]);
-
-        return (bool) $req->fetchColumn();
-    }
-
-    public function get($info)
-    {
-        if (is_int($info))
-        {
-            $req = $this->_db->query('SELECT id, name, health, experience, level, strength FROM characters WHERE id =' . $info);
-            $data = $req->fetch(PDO::FETCH_ASSOC);
-    
-            return new Character($data);
-        }
-        else
-        {
-            $req = $this->_db->prepare('SELECT id, name, health, experience, level, strength FROM characters WHERE name = :name');
-            $req->execute([':name' => $info]);
-
-            return new Character($req->fetch(PDO::FETCH_ASSOC));
-        }
-    }
-
-    public function update(Character $character)
-    {
-        $req = $this->db->prepare('UPDATE characters SET health = :health, experience = :experience, level = :level, strength = :strength WHERE id = :id');
-
-        $req->bindValue(':health', $character->getHealth(), PDO::PARAM_INT);
-        $req->bindValue(':experience', $character->getExperience(), PDO::PARAM_INT);
-        $req->bindValue(':level', $character->getLevel(), PDO::PARAM_INT);
-        $req->bindValue(':strength', $character->getStrength(), PDO::PARAM_INT);
-        $req->bindValue(':id', $character->getId(), PDO::PARAM_INT);
-    
-        $req->execute();
-    }
-
-    public function setDb(PDO $db)
-    {
-        $this->_db = $db;
-    }
+    // addCharacter
+    // 
 }
