@@ -10,19 +10,17 @@ if (isset($_SESSION['character']))
 
 if (isset($_GET['logOut']))
 {
-    session_destroy();
-    header('Location: .');
-    exit();
+    logOut();
 }
 
-if (isset($_POST['$character'])) // gameplayView
+if (isset($_POST['$characterId']))
 {  
     loadGameplay();
 }
 else 
 {
-    loadGameplay();
-    // listCharacters();
+    // loadGameplay();
+    listCharacters();
 }
 
 if (isset($character))

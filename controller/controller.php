@@ -13,23 +13,25 @@ function listCharacters()
     require('view/homeView.php');
 }
 
-function createCharacter()
+function createCharacter($name)
 {
     //  new CharacterManager -> addCharactertoDb
+    $characterManager = new CharactersManager();
+    $character = $characterManager->addCharacter($name);
 }
 
-function deleteCharacter()
+function deleteCharacter($characterId)
 {
     //  new CharacterManager -> deleteCharacterfromDb
 }
 
-function loadGameplay()
+function loadGameplay($characterId)
 {
     $characterManager = new CharactersManager();
     $storyManager = new StoryManager();
 
-    $character = $characterManager->getCharacter($_GET['id']);
-    $story = $storyManager->getStory($_GET['id']);
+    $character = $characterManager->getCharacter($characterId);
+    $story = $storyManager->getStory($characterId);
 
     require('view/gameplayView.php');
 }
@@ -50,5 +52,7 @@ function addText($characterId, $text)
 
 function logOut()
 {
-
+    session_destroy();
+    header('Location: .');
+    exit();
 }
